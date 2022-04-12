@@ -1,0 +1,2 @@
+# qLauncher
+Qt Minecraft Launcher
