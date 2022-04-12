@@ -2,3 +2,7 @@
 	path = SingleApplication
 	url = https://github.com/itay-grudev/SingleApplication.git
 	branch = master
+[submodule "qLauncher/src/libs/singleapplication"]
+	path = qLauncher/src/libs/singleapplication
+	url = https://github.com/itay-grudev/SingleApplication.git
+	branch = master
