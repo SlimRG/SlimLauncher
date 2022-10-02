@@ -1,11 +1,25 @@
-#include "starter.h"
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
 
-#include <QApplication>
+#include <singleapplication.h>
+
+#include "main.hpp"
+
+using namespace SETTINGS;
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    return a.exec();
+
+    SingleApplication app(argc, argv);
+
+    QQmlApplicationEngine engine;
+    const QUrl url(u"qrc:/untitled7/main.qml"_qs);
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
+                     &app, [url](QObject *obj, const QUrl &objUrl) {
+        if (!obj && url == objUrl)
+            QCoreApplication::exit(-1);
+    }, Qt::QueuedConnection);
+    engine.load(url);
+
+    return app.exec();
 }
