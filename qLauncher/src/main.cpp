@@ -9,16 +9,21 @@ using namespace SETTINGS;
 
 int main(int argc, char *argv[])
 {
-
+    // Prepre app
     SingleApplication app(argc, argv);
-
     QQmlApplicationEngine engine;
-    const QUrl url(u"qrc:/untitled7/main.qml"_qs);
+
+    //
+
+
+    const QUrl url("qrc:/main.qml");
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
+
+
     engine.load(url);
 
     return app.exec();
