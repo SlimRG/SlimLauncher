@@ -10,12 +10,12 @@ using namespace SETTINGS;
 int main(int argc, char *argv[])
 {
     // Prepre app
+    qmlRegisterType<NotchedRectangle>("NR", 1, 0, "NotchedRectangle");
     SingleApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
-    //
 
-
+    // Prepare QML
     const QUrl url("qrc:/main.qml");
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

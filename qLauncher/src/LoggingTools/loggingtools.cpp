@@ -16,7 +16,7 @@
 // In case of output other than 0 - the application crashes with an error
 void LoggingTools::StartPrecedure(Procedure func, const QString& funcName)
 {
-    int result = func();
+    //int result = func();
 
 }
 

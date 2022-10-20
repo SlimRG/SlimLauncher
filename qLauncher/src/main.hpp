@@ -3,7 +3,9 @@
 
     // Libraries
     #include "LoggingTools/loggingtools.hpp"
+    #include "UI/NotchedRectangle/notchedrectangle.hpp"
     #include "settings.hpp"
+
 
     // Declaring functions
     int main(int, char**); // Main function

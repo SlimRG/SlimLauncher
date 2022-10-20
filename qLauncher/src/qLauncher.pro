@@ -1,10 +1,13 @@
 QT += quick
+QT += svg
 
 SOURCES += \
         LoggingTools/loggingtools.cpp \
+        UI/NotchedRectangle/notchedrectangle.cpp \
         main.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += qml.qrc \
+    assets.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -19,6 +22,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     LoggingTools/loggingtools.hpp \
+    UI/NotchedRectangle/notchedrectangle.hpp \
     main.hpp \
     settings.hpp
 
