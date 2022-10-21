@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/UI/Images">
         <file alias="Logo.svg">assets/UI/Images/Logo.svg</file>
+        <file alias="Expand.svg">assets/UI/Images/Expand.svg</file>
+        <file alias="Minimize.svg">assets/UI/Images/Minimize.svg</file>
+        <file alias="Close.svg">assets/UI/Images/Close.svg</file>
     </qresource>
 </RCC>
