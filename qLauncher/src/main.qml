@@ -22,6 +22,70 @@ Window {
                         windowAbs.y + mainWindow.y)
     }
 
+    function cDrawBgProgressBar(parentObj) {
+      const cnv = parentObj;
+      const ctx = cnv.getContext(`2d`);
+
+      const numberOfRings     = 3;
+      const ringRadiusOffset  = 3;
+      const ringRadius        = 200;
+      const waveOffset        = 15;
+      const colors            = [`#0472ff`, `#04a5ff`, `#00bfff`];
+      let startAngle          = 0;
+
+      function updateRings() {
+        for (let i = 0; i < numberOfRings; i++) {
+          let radius = i * ringRadiusOffset + ringRadius;
+          let offsetAngle = i * waveOffset * Math.PI / 180;
+          drawRing(radius, colors[i], offsetAngle);
+        }
+
+        startAngle >= 360? startAngle = 0 : startAngle++;
+      }
+
+      let centerX = cnv.width  / 2;
+      let centerY = cnv.height / 2;
+
+      const maxWavesAmplitude = 17;
+      const numberOfWaves     = 7;
+
+      function drawRing(radius, color, offsetAngle) {
+        ctx.strokeStyle = color;
+        ctx.lineWidth   = 9;
+
+        ctx.beginPath();
+
+        for (let j = -180; j < 180; j++) {
+          let currentAngle  = (j + startAngle) * Math.PI / 180;
+          let displacement  = 0;
+          let now = Math.abs(j);
+
+          if (now > 70) {
+            displacement = (now - 70) / 70;
+          }
+
+          if (displacement >= 1) {
+            displacement = 1;
+          }
+
+          let waveAmplitude = radius + displacement * Math.sin((currentAngle + offsetAngle) * numberOfWaves) * maxWavesAmplitude;
+          let x = centerX + Math.cos(currentAngle) * waveAmplitude;
+          let y = centerY + Math.sin(currentAngle) * waveAmplitude;
+          j > -180? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+
+        }
+        ctx.closePath();
+        ctx.stroke();
+      }
+
+      function loop() {
+        ctx.clearRect(0, 0, cnv.width, cnv.height);
+        updateRings();
+        loading.requestAnimationFrame(loop);
+      }
+      loop();
+    }
+
     Row{
         id: title
         width: parent.width
@@ -143,12 +207,16 @@ Window {
             }
         }
 
-        Item{
+        Canvas{
             id: loading
             x: 0
             y: 64
             width: 512
             height: 486
+
+            onPaint: {
+                cDrawBgProgressBar(loading);
+            }
         }
 
     }
@@ -186,11 +254,6 @@ Window {
             mainWindow.x = newX
             mainWindow.width = newWidth
         }
-
-        Rectangle {
-            anchors.fill: parent
-            color: "red"
-        }
     }
 
     MouseArea {
@@ -215,11 +278,6 @@ Window {
             var newWidth = Math.max(mainWindow.minimumWidth, startWindowSize.width + (abs.x - startMousePos.x))
             mainWindow.width = newWidth
         }
-
-        Rectangle {
-            anchors.fill: parent
-            color: "red"
-        }
     }
 
     MouseArea {
@@ -243,11 +301,6 @@ Window {
             var newX = startWindowPos.x - (newWidth - startWindowSize.width)
             mainWindow.setGeometry(newX, mainWindow.y, newWidth, newHeight)
         }
-
-        Rectangle {
-            anchors.fill: parent
-            color: "blue"
-        }
     }
 
     MouseArea {
@@ -269,11 +322,6 @@ Window {
             var newWidth = Math.max(mainWindow.minimumWidth, startWindowSize.width + (abs.x - startMousePos.x))
             var newHeight = Math.max(mainWindow.minimumHeight, startWindowSize.height + (abs.y - startMousePos.y))
             mainWindow.setGeometry(mainWindow.x, mainWindow.y, newWidth, newHeight)
-        }
-
-        Rectangle {
-            anchors.fill: parent
-            color: "blue"
         }
     }
 
@@ -297,11 +345,6 @@ Window {
             var abs = absoluteMousePos(buttonArea)
             var newHeight = Math.max(mainWindow.minimumHeight, startWindowSize.height + (abs.y - startMousePos.y))
             mainWindow.height = newHeight
-        }
-
-        Rectangle {
-            anchors.fill: parent
-            color: "red"
         }
     }
 
