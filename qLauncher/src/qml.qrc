@@ -1,5 +1,10 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>qmls/MainWindow.qml</file>
+        <file>qmls/MainTitle.qml</file>
+        <file>qmls/MainBody.qml</file>
+        <file>qmls/LSMainTitle.qml</file>
+        <file>qmls/RSMainTitle.qml</file>
     </qresource>
 </RCC>
