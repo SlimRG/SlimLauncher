@@ -6,5 +6,6 @@
         <file>qmls/MainBody.qml</file>
         <file>qmls/LSMainTitle.qml</file>
         <file>qmls/RSMainTitle.qml</file>
+        <file>qmls/LoadingBody.qml</file>
     </qresource>
 </RCC>

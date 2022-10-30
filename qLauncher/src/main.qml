@@ -16,5 +16,8 @@ MainWindow{
     }
     MainBody{
         id: mainBody
+        LoadingBody{
+            id: loading_body
+        }
     }
 }
