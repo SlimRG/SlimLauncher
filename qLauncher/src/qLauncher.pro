@@ -4,6 +4,7 @@ QT += svg
 SOURCES += \
         LoggingTools/loggingtools.cpp \
         UI/NotchedRectangle/notchedrectangle.cpp \
+        UI/WindowRoundedSides/windowroundedsides.cpp \
         main.cpp
 
 RESOURCES += qml.qrc \
@@ -23,6 +24,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     LoggingTools/loggingtools.hpp \
     UI/NotchedRectangle/notchedrectangle.hpp \
+    UI/WindowRoundedSides/windowroundedsides.hpp \
     main.hpp \
     settings.hpp
 

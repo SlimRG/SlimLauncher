@@ -16,7 +16,12 @@ Item{
 
     MouseArea {
         id: moveArea
-        anchors.fill: mainTitle
+        anchors{
+            fill: mainTitle
+            leftMargin: 5
+            rightMargin: 5
+            topMargin: 5
+        }
         property point mPos;
         onPressed: {
             mPos = Qt.point(mouseX, mouseY)

@@ -23,7 +23,7 @@ Window {
     MouseArea {
         id: leftArea
         anchors.top: parent.top
-        anchors.topMargin: 48
+        anchors.topMargin: 30 * 1.5
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 5
         cursorShape: Qt.SizeHorCursor

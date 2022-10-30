@@ -14,4 +14,7 @@ MainWindow{
             id: rightSideTitle
         }
     }
+    MainBody{
+        id: mainBody
+    }
 }

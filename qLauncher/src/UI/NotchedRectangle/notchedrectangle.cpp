@@ -32,7 +32,24 @@ void NotchedRectangle::paint(QPainter* painter)
     path.lineTo(w, h);
     path.lineTo(path.currentPosition().x(), h);
     path.lineTo(0, h);
+
+    QPen pen(QBrush(m_borderColor), m_borderWidth);
+
     painter->fillPath(path, m_color);
+
+    if (m_onlyTopBorder)
+    {
+        path.clear();
+        path.arcTo(cx - xDelta - cr, 0, cd, cd, 90, -90 + angle);
+        path.arcTo(cx - nr, cy - nr, nd, nd, -180 + angle, 180 - angle * 2);
+        path.arcTo(cx + xDelta - cr, 0, cd,  cd, 180 - angle, -90 + angle);
+
+        path.lineTo(w, 0);
+        path.moveTo(w, h);
+    }
+
+    painter->strokePath(path, pen);
+
 }
 
 QColor NotchedRectangle::color() const
@@ -47,6 +64,20 @@ void NotchedRectangle::setColor(QColor color)
 
     m_color = color;
     emit colorChanged();
+}
+
+QColor NotchedRectangle::borderColor() const
+{
+    return m_borderColor;
+}
+
+void NotchedRectangle::setBorderColor(QColor color)
+{
+    if (m_borderColor == color)
+        return;
+
+    m_borderColor = color;
+    emit borderColorChanged();
 }
 
 double NotchedRectangle::notchRadius() const
@@ -91,5 +122,35 @@ void NotchedRectangle::setCornerRadius(double cornerRadius)
 
     m_cornerRadius = cornerRadius;
     emit cornerRadiusChanged();
+    update();
+}
+
+double NotchedRectangle::borderWidth() const
+{
+    return m_borderWidth;
+}
+
+void NotchedRectangle::setBorderWidth(double width)
+{
+    if (qFuzzyCompare(m_borderWidth, width))
+        return;
+
+    m_borderWidth = width;
+    emit borderWidthChanged();
+    update();
+}
+
+bool NotchedRectangle::onlyTopBorder() const
+{
+    return m_onlyTopBorder;
+}
+
+void NotchedRectangle::setOnlyTopBorder(bool ohz)
+{
+    if (m_onlyTopBorder == ohz)
+        return;
+
+    m_onlyTopBorder = ohz;
+    emit onlyTopBorderChanged();
     update();
 }

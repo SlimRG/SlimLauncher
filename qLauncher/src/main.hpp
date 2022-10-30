@@ -4,6 +4,7 @@
     // Libraries
     #include "LoggingTools/loggingtools.hpp"
     #include "UI/NotchedRectangle/notchedrectangle.hpp"
+    #include "UI/WindowRoundedSides/windowroundedsides.hpp"
     #include "settings.hpp"
 
 
