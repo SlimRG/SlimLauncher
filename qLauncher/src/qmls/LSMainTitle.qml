@@ -5,6 +5,7 @@ import NR 1.0
 import WRS 1.0
 
 Item{
+    id: ls_main_title
     anchors{
         top: parent.top
         bottom: parent.bottom

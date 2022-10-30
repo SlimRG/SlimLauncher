@@ -10,6 +10,9 @@ Window {
     flags: Qt.Window | Qt.FramelessWindowHint
     color: "transparent"
 
+    minimumWidth: 632
+    minimumHeight: 688
+
     property point startMousePos
     property point startWindowPos
     property size startWindowSize

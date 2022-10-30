@@ -49,7 +49,7 @@ Item{
                 anchors.fill: parent
                 hoverEnabled: true
                 onClicked: {
-                    console.info("Minimize image clicked!")
+                    mainWindow.showMinimized();
                 }
             }
         }
@@ -77,7 +77,7 @@ Item{
                 anchors.fill: parent
                 hoverEnabled: true
                 onClicked: {
-                    console.info("image clicked!")
+                    mainWindow.showFullScreen();
                 }
             }
         }
@@ -105,7 +105,7 @@ Item{
                 anchors.fill: parent
                 hoverEnabled: true
                 onClicked: {
-                    console.info("image clicked!")
+                    Qt.callLater(Qt.quit);
                 }
             }
         }
