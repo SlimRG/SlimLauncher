@@ -31,3 +31,9 @@ HEADERS += \
 # Single application mode
 include(libs/singleapplication/singleapplication.pri)
 DEFINES += QAPPLICATION_CLASS=QGuiApplication
+
+CONFIG += qmltypes
+QML_IMPORT_NAME = Custom
+QML_IMPORT_MAJOR_VERSION = 1
+INCLUDEPATH += UI/NotchedRectangle
+INCLUDEPATH += UI/WindowRoundedSides

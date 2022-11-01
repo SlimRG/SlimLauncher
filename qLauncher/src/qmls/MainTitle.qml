@@ -38,7 +38,7 @@ Item{
         horizontalOffset: 1
         verticalOffset: 1
         radius: moveArea.pressed ? 8 : 5
-        transparentBorder: false
+        transparentBorder: true
         source: mainTitle
         color: "#80000000"
         cached: false

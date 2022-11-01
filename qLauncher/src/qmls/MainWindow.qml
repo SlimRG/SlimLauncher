@@ -31,6 +31,7 @@ Window {
         anchors.bottomMargin: 5
         cursorShape: Qt.SizeHorCursor
         width: 5
+        visible: (mainWindow.visibility === Window.FullScreen)
         onPressed: {
             startMousePos = absoluteMousePos(leftArea)
             startWindowPos = Qt.point(mainWindow.x, mainWindow.y)
@@ -57,6 +58,8 @@ Window {
         anchors.bottomMargin: 5
         cursorShape: Qt.SizeHorCursor
 
+        visible: (mainWindow.visibility != Window.FullScreen)
+
         onPressed: {
             startMousePos = absoluteMousePos(rightArea)
             startWindowPos = Qt.point(mainWindow.x, mainWindow.y)
@@ -76,6 +79,8 @@ Window {
         anchors.left: parent.left
         y: parent.height - leftCorArea.height
         cursorShape: Qt.SizeBDiagCursor
+
+        visible: (mainWindow.visibility != Window.FullScreen)
 
         onPressed: {
             startMousePos = absoluteMousePos(leftCorArea)
@@ -99,6 +104,8 @@ Window {
         y: parent.height - rigthCorArea.height
         x: parent.width - rigthCorArea.width
         cursorShape: Qt.SizeFDiagCursor
+
+        visible: (mainWindow.visibility != Window.FullScreen)
 
         onPressed: {
             startMousePos = absoluteMousePos(rigthCorArea)
@@ -124,6 +131,8 @@ Window {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         cursorShape: Qt.SizeVerCursor
+
+        visible: (mainWindow.visibility != Window.FullScreen)
 
         onPressed: {
             startMousePos = absoluteMousePos(buttonArea)

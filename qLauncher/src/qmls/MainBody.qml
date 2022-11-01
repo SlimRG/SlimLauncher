@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Qt5Compat.GraphicalEffects
 
-import WRS 1.0
+import Custom
 
 WindowRoundedSides{
     id: form
@@ -12,7 +12,7 @@ WindowRoundedSides{
 
     width: parent.width
     color: "#ffffff"
-    radius: 8
+    radius: (mainWindow.visibility === Window.FullScreen) ? 0 : 8
     side: "bottom"
     borderColor: "#80000000"
     borderWidth: 1

@@ -1,6 +1,7 @@
 #ifndef WINDOWROUNDEDSIDES_HPP
 #define WINDOWROUNDEDSIDES_HPP
 
+#include <QtQml/qqmlregistration.h>
 #include <QQuickPaintedItem>
 
 class WindowRoundedSides : public QQuickPaintedItem
@@ -11,6 +12,7 @@ class WindowRoundedSides : public QQuickPaintedItem
     Q_PROPERTY(QString side READ side WRITE setSide NOTIFY sideChanged)
     Q_PROPERTY(double radius READ radius WRITE setRadius NOTIFY radiusChanged)
     Q_PROPERTY(double borderWidth READ borderWidth WRITE setBorderWidth NOTIFY borderWidthChanged)
+    QML_ELEMENT
 public:
     WindowRoundedSides();
 

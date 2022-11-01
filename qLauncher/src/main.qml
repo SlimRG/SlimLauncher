@@ -16,8 +16,14 @@ MainWindow{
     }
     MainBody{
         id: mainBody
+        LoginBody{
+            id: login_body
+            visible: false
+        }
+
         LoadingBody{
             id: loading_body
+            visible: false
         }
     }
 }

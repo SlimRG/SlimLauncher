@@ -1,7 +1,7 @@
+import QtQuick 2.0
 import Qt5Compat.GraphicalEffects
 
-import QtQuick 2.0
-import WRS 1.0
+import Custom
 
 Item{
     anchors{
@@ -18,8 +18,8 @@ Item{
             right: parent.right
             bottom: parent.bottom
         }
-        height: mainTitle.titleHeight * 1.5        
-        radius: 8
+        height: (mainWindow.visibility === Window.FullScreen) ? parent.height : mainTitle.titleHeight * 1.5
+        radius: (mainWindow.visibility === Window.FullScreen) ? 0 : 8
         side: "top,right"
         color: "#ffffff"
         borderColor: "#99000000"
@@ -78,6 +78,40 @@ Item{
                 hoverEnabled: true
                 onClicked: {
                     mainWindow.showFullScreen();
+                    expandBtn.visible = false;
+                    unexpandBtn.visible = true;
+                }
+            }
+        }
+
+        Image{
+            id: unexpandBtn
+            anchors{
+                top: parent.top
+                topMargin: mainTitle.titleHeight/5
+                right: closeBtn.left
+                rightMargin: mainTitle.titleHeight*0.9
+            }
+            height: mainTitle.titleHeight*2/3
+            width: unexpandBtn.height
+            source: "qrc:/UI/Images/Unexpand.svg"
+
+            visible: false
+
+            ColorOverlay {
+                anchors.fill: unexpandBtn
+                source: (unexpandBtn_ma.pressed || unexpandBtn_ma.containsMouse) ? unexpandBtn : null
+                color: (unexpandBtn_ma.pressed) ? "#41A5EE" : (unexpandBtn_ma.containsMouse) ? "#0077FF" : "transparent"
+            }
+
+            MouseArea {
+                id: unexpandBtn_ma
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked: {
+                    mainWindow.showNormal();
+                    unexpandBtn.visible = false;
+                    expandBtn.visible = true;
                 }
             }
         }

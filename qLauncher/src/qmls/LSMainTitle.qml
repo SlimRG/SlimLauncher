@@ -1,8 +1,7 @@
 import QtQuick 2.0
 import Qt5Compat.GraphicalEffects
 
-import NR 1.0
-import WRS 1.0
+import Custom
 
 Item{
     id: ls_main_title
@@ -20,11 +19,11 @@ Item{
             left: parent.left
         }
         width: leftRoundedCorner.radius * 2
-        height: mainTitle.titleHeight * 1.5
-        radius: 8
+        height: (mainWindow.visibility == Window.FullScreen) ? parent.height : mainTitle.titleHeight * 1.5
+        radius: (mainWindow.visibility == Window.FullScreen) ? 0 : 8
         side: "top,left"
         color: "#ffffff"
-        borderColor: "#80000000"
+        borderColor: "grey"
         borderWidth: 1
     }
 
@@ -35,9 +34,11 @@ Item{
             left: leftRoundedCorner.right
             right: parent.right
         }
-        height: mainTitle.titleHeight * 1.5
+
+        height: (mainWindow.visibility == Window.FullScreen) ? parent.height : mainTitle.titleHeight * 1.5
+
         notchCenter: Qt.point(logo.width * 2, -subtract.notchRadius + subtract.height-1)
-        notchRadius: logo.width * 0.8       
+        notchRadius: (mainWindow.visibility == Window.FullScreen) ? 0 : logo.width * 0.8
         color: "#ffffff"
         borderColor: "#80000000"
         borderWidth: 1

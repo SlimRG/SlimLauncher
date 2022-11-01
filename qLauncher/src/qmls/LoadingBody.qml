@@ -97,7 +97,6 @@ Item {
         function loop() {
             ctx.clearRect(0, 0, loading.width, loading.height);
             updateRings();
-
             loading.animationFrame = loading.requestAnimationFrame(loop);
         }
         loop();

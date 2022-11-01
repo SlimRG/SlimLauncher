@@ -10,8 +10,8 @@ using namespace SETTINGS;
 int main(int argc, char *argv[])
 {
     // Prepre app
-    qmlRegisterType<NotchedRectangle>("NR", 1, 0, "NotchedRectangle");
-    qmlRegisterType<WindowRoundedSides>("WRS", 1, 0, "WindowRoundedSides");
+    //qmlRegisterType<NotchedRectangle>("NR", 1, 0, "NotchedRectangle");
+    //qmlRegisterType<WindowRoundedSides>("WRS", 1, 0, "WindowRoundedSides");
     SingleApplication app(argc, argv);
     QQmlApplicationEngine engine;
 

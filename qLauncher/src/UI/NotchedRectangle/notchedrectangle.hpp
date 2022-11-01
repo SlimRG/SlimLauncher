@@ -1,6 +1,7 @@
 #ifndef NOTCHEDRECTANGLE_HPP
 #define NOTCHEDRECTANGLE_HPP
 
+#include <QtQml/qqmlregistration.h>
 #include <QQuickPaintedItem>
 
 class NotchedRectangle : public QQuickPaintedItem
@@ -13,7 +14,7 @@ class NotchedRectangle : public QQuickPaintedItem
     Q_PROPERTY(double cornerRadius READ cornerRadius WRITE setCornerRadius NOTIFY cornerRadiusChanged)
     Q_PROPERTY(double borderWidth READ borderWidth WRITE setBorderWidth NOTIFY borderWidthChanged)
     Q_PROPERTY(bool onlyTopBorder READ onlyTopBorder WRITE setOnlyTopBorder NOTIFY onlyTopBorderChanged)
-
+    QML_ELEMENT
 public:
     NotchedRectangle();
 

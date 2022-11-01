@@ -4,5 +4,6 @@
         <file alias="Expand.svg">assets/UI/Images/Expand.svg</file>
         <file alias="Logo.svg">assets/UI/Images/Logo.svg</file>
         <file alias="Minimize.svg">assets/UI/Images/Minimize.svg</file>
+        <file alias="Unexpand.svg">assets/UI/Images/Unexpand.svg</file>
     </qresource>
 </RCC>
