@@ -64,6 +64,7 @@ void NotchedRectangle::setColor(QColor color)
 
     m_color = color;
     emit colorChanged();
+    update();
 }
 
 QColor NotchedRectangle::borderColor() const
@@ -78,6 +79,7 @@ void NotchedRectangle::setBorderColor(QColor color)
 
     m_borderColor = color;
     emit borderColorChanged();
+    update();
 }
 
 double NotchedRectangle::notchRadius() const

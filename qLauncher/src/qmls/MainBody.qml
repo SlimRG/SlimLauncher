@@ -7,13 +7,13 @@ WindowRoundedSides{
     id: form
     anchors{
         fill: parent
-        topMargin: 30 * 3 // 2 * HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics\CaptionHeight
+        topMargin: mainWindow.titleHeight * 3 // 2 * HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics\CaptionHeight
     }
 
     width: parent.width
     color: "#ffffff"
     radius: (mainWindow.visibility === Window.FullScreen) ? 0 : 8
     side: "bottom"
-    borderColor: "#80000000"
+    borderColor: mainWindow.colorBorderWindow
     borderWidth: 1
 }

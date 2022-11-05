@@ -1,17 +1,31 @@
 import QtQuick
 import QtQuick 2.15
+import QtQuick.Controls.Material 2.3
+
+import Custom
 
 Window {
     id: mainWindow
-    width: 640
-    height: 720
     visible: true
-    title: qsTr("Hello World")
     flags: Qt.Window | Qt.FramelessWindowHint
     color: "transparent"
 
-    minimumWidth: 632
-    minimumHeight: 688
+    //property int themeMode: PlatformToolsQML.themeMode
+    property int titleHeight: PlatformToolsQML.captionHeight
+
+    width: PlatformToolsQML.getFrameSize.x
+    height: PlatformToolsQML.getFrameSize.y
+
+    minimumWidth: PlatformToolsQML.getFrameMinSize.x
+    minimumHeight: PlatformToolsQML.getFrameMinSize.y
+
+    property color colorActiveWindow: PlatformToolsQML.colorActiveWindow
+    property color colorBorderWindow: PlatformToolsQML.colorBorderWindow
+
+    property int cornerRadiusTopLevel: PlatformToolsQML.cornerRadiusTopLevel
+    property int borderWidthWindow: PlatformToolsQML.borderWidthWindow
+
+    property bool isFullScreen: (mainWindow.visibility === Window.FullScreen)
 
     property point startMousePos
     property point startWindowPos
@@ -31,7 +45,7 @@ Window {
         anchors.bottomMargin: 5
         cursorShape: Qt.SizeHorCursor
         width: 5
-        visible: (mainWindow.visibility === Window.FullScreen)
+        visible: (mainWindow.visibility != Window.FullScreen)
         onPressed: {
             startMousePos = absoluteMousePos(leftArea)
             startWindowPos = Qt.point(mainWindow.x, mainWindow.y)
@@ -145,4 +159,5 @@ Window {
             mainWindow.height = newHeight
         }
     }
+
 }

@@ -18,22 +18,22 @@ Item{
             right: parent.right
             bottom: parent.bottom
         }
-        height: (mainWindow.visibility === Window.FullScreen) ? parent.height : mainTitle.titleHeight * 1.5
-        radius: (mainWindow.visibility === Window.FullScreen) ? 0 : 8
+        height: (mainWindow.isFullScreen) ? parent.height : mainWindow.titleHeight * 1.5
+        radius: (mainWindow.isFullScreen) ? 0 : mainWindow.cornerRadiusTopLevel
         side: "top,right"
-        color: "#ffffff"
-        borderColor: "#99000000"
-        borderWidth: 1
+        color: mainWindow.colorActiveWindow
+        borderColor: mainWindow.colorBorderWindow
+        borderWidth: mainWindow.borderWidthWindow
 
         Image{
             id: minimizeBtn
             anchors{
                 top: parent.top
-                topMargin: mainTitle.titleHeight/5
+                topMargin: mainWindow.titleHeight/5
                 right: expandBtn.left
-                rightMargin: mainTitle.titleHeight*0.9
+                rightMargin: mainWindow.titleHeight*0.9
             }
-            height: mainTitle.titleHeight*2/3
+            height: mainWindow.titleHeight*2/3
             width: minimizeBtn.height
 
             source: "qrc:/UI/Images/Minimize.svg"
@@ -58,11 +58,11 @@ Item{
             id: expandBtn
             anchors{
                 top: parent.top
-                topMargin: mainTitle.titleHeight/5
+                topMargin: mainWindow.titleHeight/5
                 right: closeBtn.left
-                rightMargin: mainTitle.titleHeight*0.9
+                rightMargin: mainWindow.titleHeight*0.9
             }
-            height: mainTitle.titleHeight*2/3
+            height: mainWindow.titleHeight*2/3
             width: expandBtn.height
             source: "qrc:/UI/Images/Expand.svg"
 
@@ -88,11 +88,11 @@ Item{
             id: unexpandBtn
             anchors{
                 top: parent.top
-                topMargin: mainTitle.titleHeight/5
+                topMargin: mainWindow.titleHeight/5
                 right: closeBtn.left
-                rightMargin: mainTitle.titleHeight*0.9
+                rightMargin: mainWindow.titleHeight*0.9
             }
-            height: mainTitle.titleHeight*2/3
+            height: mainWindow.titleHeight*2/3
             width: unexpandBtn.height
             source: "qrc:/UI/Images/Unexpand.svg"
 
@@ -120,11 +120,11 @@ Item{
             id: closeBtn
             anchors{
                 top: parent.top
-                topMargin: mainTitle.titleHeight/5
+                topMargin: mainWindow.titleHeight/5
                 right: parent.right
-                rightMargin: mainTitle.titleHeight*0.45
+                rightMargin: mainWindow.titleHeight*0.45
             }
-            height: mainTitle.titleHeight*2/3
+            height: mainWindow.titleHeight*2/3
             width: closeBtn.height
             source: "qrc:/UI/Images/Close.svg"
 

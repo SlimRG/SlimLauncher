@@ -3,6 +3,8 @@ import QtQuick 2.0
 
 import Qt5Compat.GraphicalEffects
 
+import Custom
+
 Item{
     id:mainTitle
     anchors{
@@ -11,12 +13,11 @@ Item{
         top: parent.top
     }
 
-    property int titleHeight: 30 // HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics\CaptionHeight
-
-    height: mainTitle.titleHeight * 3 // 2 * HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics\CaptionHeight
+    height: mainWindow.titleHeight * 3
 
     MouseArea {
         id: moveArea
+        visible: (mainWindow.visibility != Window.FullScreen)
         anchors{
             fill: mainTitle
             leftMargin: 5
@@ -34,6 +35,8 @@ Item{
     }
 
     DropShadow {
+        id: titleShadow
+        visible: (mainWindow.visibility != Window.FullScreen)
         anchors.fill: mainTitle
         horizontalOffset: 1
         verticalOffset: 1

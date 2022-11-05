@@ -1,20 +1,18 @@
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
-
-#include <singleapplication.h>
-
 #include "main.hpp"
 
 using namespace SETTINGS;
 
 int main(int argc, char *argv[])
 {
+    //qputenv("QT_QPA_PLATFORM", "windows:darkmode=2");
     // Prepre app
-    //qmlRegisterType<NotchedRectangle>("NR", 1, 0, "NotchedRectangle");
-    //qmlRegisterType<WindowRoundedSides>("WRS", 1, 0, "WindowRoundedSides");
     SingleApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
+    // Set system settings
+    QCoreApplication::setOrganizationName(SETTINGS::ORGANIZATION_NAME);
+    QCoreApplication::setOrganizationDomain(SETTINGS::ORGANIZATION_DOMAIN);
+    QCoreApplication::setApplicationName(SETTINGS::APPLICATION_NAME);
 
     // Prepare QML
     const QUrl url("qrc:/main.qml");

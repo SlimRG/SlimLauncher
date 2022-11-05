@@ -2,8 +2,9 @@ QT += quick
 QT += svg
 
 SOURCES += \
-        LoggingTools/loggingtools.cpp \
+        Tools/platformtools.cpp \
         UI/NotchedRectangle/notchedrectangle.cpp \
+        UI/PlatformToolsQML/platformtoolsqml.cpp \
         UI/WindowRoundedSides/windowroundedsides.cpp \
         main.cpp
 
@@ -22,8 +23,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    LoggingTools/loggingtools.hpp \
+    Tools/platformtools.hpp \
     UI/NotchedRectangle/notchedrectangle.hpp \
+    UI/PlatformToolsQML/platformtoolsqml.hpp \
     UI/WindowRoundedSides/windowroundedsides.hpp \
     main.hpp \
     settings.hpp
@@ -37,3 +39,4 @@ QML_IMPORT_NAME = Custom
 QML_IMPORT_MAJOR_VERSION = 1
 INCLUDEPATH += UI/NotchedRectangle
 INCLUDEPATH += UI/WindowRoundedSides
+INCLUDEPATH += UI/PlatformToolsQML

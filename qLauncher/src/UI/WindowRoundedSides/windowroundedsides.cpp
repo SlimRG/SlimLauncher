@@ -98,6 +98,7 @@ void WindowRoundedSides::setColor(QColor color)
 
     m_color = color;
     emit colorChanged();
+    update();
 }
 
 QColor WindowRoundedSides::borderColor() const
@@ -112,6 +113,7 @@ void WindowRoundedSides::setBorderColor(QColor color)
 
     m_borderColor = color;
     emit borderColorChanged();
+    update();
 }
 
 QString WindowRoundedSides::side() const
@@ -120,8 +122,7 @@ QString WindowRoundedSides::side() const
     case (-1): return "undefined";
     case (0): return "top,left";
     case (1): return "top,right";
-    case (2): return "bottom,left";
-    case (3): return "bottom,right";
+    case (2): return "bottom";
     default: return "unknown";
     }
 }
@@ -157,6 +158,7 @@ void WindowRoundedSides::setSide(QString side)
 
     m_side = sideInt;
     emit sideChanged();
+    update();
 }
 
 double WindowRoundedSides::radius() const
