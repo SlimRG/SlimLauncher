@@ -31,9 +31,9 @@ Item{
                 top: parent.top
                 topMargin: mainWindow.titleHeight/5
                 right: expandBtn.left
-                rightMargin: mainWindow.titleHeight*0.9
+                rightMargin: mainWindow.titleHeight * 1.15
             }
-            height: mainWindow.titleHeight*2/3
+            height: mainWindow.titleHeight * 0.85
             width: minimizeBtn.height
 
             source: "qrc:/UI/Images/Minimize.svg"
@@ -60,9 +60,9 @@ Item{
                 top: parent.top
                 topMargin: mainWindow.titleHeight/5
                 right: closeBtn.left
-                rightMargin: mainWindow.titleHeight*0.9
+                rightMargin: mainWindow.titleHeight * 1.15
             }
-            height: mainWindow.titleHeight*2/3
+            height: mainWindow.titleHeight * 0.85
             width: expandBtn.height
             source: "qrc:/UI/Images/Expand.svg"
 
@@ -90,9 +90,9 @@ Item{
                 top: parent.top
                 topMargin: mainWindow.titleHeight/5
                 right: closeBtn.left
-                rightMargin: mainWindow.titleHeight*0.9
+                rightMargin: mainWindow.titleHeight * 1.15
             }
-            height: mainWindow.titleHeight*2/3
+            height: mainWindow.titleHeight * 0.85
             width: unexpandBtn.height
             source: "qrc:/UI/Images/Unexpand.svg"
 
@@ -122,9 +122,9 @@ Item{
                 top: parent.top
                 topMargin: mainWindow.titleHeight/5
                 right: parent.right
-                rightMargin: mainWindow.titleHeight*0.45
+                rightMargin: mainWindow.titleHeight * 0.6
             }
-            height: mainWindow.titleHeight*2/3
+            height: mainWindow.titleHeight * 0.85
             width: closeBtn.height
             source: "qrc:/UI/Images/Close.svg"
 

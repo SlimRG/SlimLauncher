@@ -39,13 +39,16 @@ Window {
 
     MouseArea {
         id: leftArea
-        anchors.top: parent.top
-        anchors.topMargin: 30 * 1.5
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 5
+        anchors{
+            top: parent.top
+            topMargin: mainWindow.titleHeight * 1.5
+            bottom: parent.bottom
+            bottomMargin: mainWindow.titleHeight * 0.15
+            left: parent.left
+        }
+        width: mainWindow.titleHeight * 0.15
         cursorShape: Qt.SizeHorCursor
-        width: 5
-        visible: (mainWindow.visibility != Window.FullScreen)
+        visible: (!mainWindow.isFullScreen)
         onPressed: {
             startMousePos = absoluteMousePos(leftArea)
             startWindowPos = Qt.point(mainWindow.x, mainWindow.y)
@@ -62,17 +65,17 @@ Window {
 
     MouseArea {
         id: rightArea
-        width: 5
+        anchors{
+            top: parent.top
+            topMargin: mainWindow.titleHeight * 1.5
+            bottom: parent.bottom
+            bottomMargin: mainWindow.titleHeight * 0.15
+            right: parent.rigth
+        }
+        width: mainWindow.titleHeight * 0.15
         x: parent.width - rightArea.width
-        anchors.right: parent.rigth
-        anchors.top: parent.top
-        anchors.rightMargin: 5
-        anchors.topMargin: 48
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 5
         cursorShape: Qt.SizeHorCursor
-
-        visible: (mainWindow.visibility != Window.FullScreen)
+        visible: (!mainWindow.isFullScreen)
 
         onPressed: {
             startMousePos = absoluteMousePos(rightArea)
@@ -87,67 +90,17 @@ Window {
     }
 
     MouseArea {
-        id: leftCorArea
-        width: 5
-        height: 5
-        anchors.left: parent.left
-        y: parent.height - leftCorArea.height
-        cursorShape: Qt.SizeBDiagCursor
-
-        visible: (mainWindow.visibility != Window.FullScreen)
-
-        onPressed: {
-            startMousePos = absoluteMousePos(leftCorArea)
-            startWindowPos = Qt.point(mainWindow.x, mainWindow.y)
-            startWindowSize = Qt.size(mainWindow.width, mainWindow.height)
-        }
-
-        onPositionChanged: {
-            var abs = absoluteMousePos(leftCorArea)
-            var newWidth = Math.max(mainWindow.minimumWidth, startWindowSize.width - (abs.x - startMousePos.x))
-            var newHeight = Math.max(mainWindow.minimumHeight, startWindowSize.height + (abs.y - startMousePos.y))
-            var newX = startWindowPos.x - (newWidth - startWindowSize.width)
-            mainWindow.setGeometry(newX, mainWindow.y, newWidth, newHeight)
-        }
-    }
-
-    MouseArea {
-        id: rigthCorArea
-        width: 5
-        height: 5
-        y: parent.height - rigthCorArea.height
-        x: parent.width - rigthCorArea.width
-        cursorShape: Qt.SizeFDiagCursor
-
-        visible: (mainWindow.visibility != Window.FullScreen)
-
-        onPressed: {
-            startMousePos = absoluteMousePos(rigthCorArea)
-            startWindowPos = Qt.point(mainWindow.x, mainWindow.y)
-            startWindowSize = Qt.size(mainWindow.width, mainWindow.height)
-        }
-
-        onPositionChanged: {
-            var abs = absoluteMousePos(rigthCorArea)
-            var newWidth = Math.max(mainWindow.minimumWidth, startWindowSize.width + (abs.x - startMousePos.x))
-            var newHeight = Math.max(mainWindow.minimumHeight, startWindowSize.height + (abs.y - startMousePos.y))
-            mainWindow.setGeometry(mainWindow.x, mainWindow.y, newWidth, newHeight)
-        }
-    }
-
-    MouseArea {
         id: buttonArea
-        y: parent.height - buttonArea.height
-        height: 5
-        anchors.leftMargin: 5
-        anchors.left: parent.left
-        anchors.rightMargin: 5
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
+        anchors{
+            left: parent.left
+            leftMargin: mainWindow.titleHeight * 0.15
+            right: parent.right
+            rightMargin: mainWindow.titleHeight * 0.15
+        }
+        y: parent.height - buttonArea.height // TODO: Переделать на anchors
+        height: mainWindow.titleHeight * 0.15
         cursorShape: Qt.SizeVerCursor
-
-        visible: (mainWindow.visibility != Window.FullScreen)
-
+        visible: (!mainWindow.isFullScreen)
         onPressed: {
             startMousePos = absoluteMousePos(buttonArea)
             startWindowPos = Qt.point(mainWindow.x, mainWindow.y)
@@ -160,4 +113,50 @@ Window {
         }
     }
 
+    MouseArea {
+        id: leftCorArea
+        anchors{
+            left: parent.left
+            bottom: parent.bottom
+        }
+        width: mainWindow.titleHeight * 0.15
+        height: mainWindow.titleHeight * 0.15
+        cursorShape: Qt.SizeBDiagCursor
+        visible: (!mainWindow.isFullScreen)
+        onPressed: {
+            startMousePos = absoluteMousePos(leftCorArea)
+            startWindowPos = Qt.point(mainWindow.x, mainWindow.y)
+            startWindowSize = Qt.size(mainWindow.width, mainWindow.height)
+        }
+        onPositionChanged: {
+            var abs = absoluteMousePos(leftCorArea)
+            var newWidth = Math.max(mainWindow.minimumWidth, startWindowSize.width - (abs.x - startMousePos.x))
+            var newHeight = Math.max(mainWindow.minimumHeight, startWindowSize.height + (abs.y - startMousePos.y))
+            var newX = startWindowPos.x - (newWidth - startWindowSize.width)
+            mainWindow.setGeometry(newX, mainWindow.y, newWidth, newHeight)
+        }
+    }
+
+    MouseArea {
+        id: rigthCorArea
+        anchors{
+            right: parent.right
+            bottom: parent.bottom
+        }
+        width: mainWindow.titleHeight * 0.15
+        height: mainWindow.titleHeight * 0.15
+        cursorShape: Qt.SizeFDiagCursor
+        visible: (!mainWindow.isFullScreen)
+        onPressed: {
+            startMousePos = absoluteMousePos(rigthCorArea)
+            startWindowPos = Qt.point(mainWindow.x, mainWindow.y)
+            startWindowSize = Qt.size(mainWindow.width, mainWindow.height)
+        }
+        onPositionChanged: {
+            var abs = absoluteMousePos(rigthCorArea)
+            var newWidth = Math.max(mainWindow.minimumWidth, startWindowSize.width + (abs.x - startMousePos.x))
+            var newHeight = Math.max(mainWindow.minimumHeight, startWindowSize.height + (abs.y - startMousePos.y))
+            mainWindow.setGeometry(mainWindow.x, mainWindow.y, newWidth, newHeight)
+        }
+    }
 }

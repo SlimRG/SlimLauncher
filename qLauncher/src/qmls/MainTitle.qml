@@ -17,12 +17,12 @@ Item{
 
     MouseArea {
         id: moveArea
-        visible: (mainWindow.visibility != Window.FullScreen)
+        visible: (!mainWindow.isFullScreen)
         anchors{
             fill: mainTitle
-            leftMargin: 5
-            rightMargin: 5
-            topMargin: 5
+            leftMargin: mainWindow.titleHeight * 0.15
+            rightMargin: mainWindow.titleHeight * 0.15
+            topMargin: mainWindow.titleHeight * 0.15
         }
         property point mPos;
         onPressed: {
@@ -34,14 +34,15 @@ Item{
         }
     }
 
+    // [TODO] Переписать архаизм (Qt 6.5+)
     DropShadow {
         id: titleShadow
-        visible: (mainWindow.visibility != Window.FullScreen)
+        visible: (!mainWindow.isFullScreen)
         anchors.fill: mainTitle
         horizontalOffset: 1
         verticalOffset: 1
         radius: moveArea.pressed ? 8 : 5
-        transparentBorder: true
+        transparentBorder: false
         source: mainTitle
         color: "#80000000"
         cached: false
