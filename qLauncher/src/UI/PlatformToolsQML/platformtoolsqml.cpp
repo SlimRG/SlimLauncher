@@ -3,7 +3,7 @@
 PlatformToolsQML::PlatformToolsQML()
 {
     #ifdef Q_OS_WIN
-        //m_sys_settings = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
+        m_sys_settings = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
         m_dwm_settings = new QSettings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\DWM", QSettings::NativeFormat);
         m_timer.start(500, Qt::VeryCoarseTimer, this);
     #endif
@@ -13,27 +13,27 @@ PlatformToolsQML::PlatformToolsQML()
 PlatformToolsQML::~PlatformToolsQML()
 {
    #ifdef Q_OS_WIN
-        //delete m_sys_settings;
+        delete m_sys_settings;
         delete m_dwm_settings;
         m_timer.stop();
    #endif
 }
 
-//int PlatformToolsQML::themeMode() const
-//{
-//    return m_themeMode;
-//}
+int PlatformToolsQML::themeMode() const
+{
+    return m_themeMode;
+}
 
-//void PlatformToolsQML::setThemeMode(int themeMode)
-//{
-//    m_autoThemeCheck = false;
+void PlatformToolsQML::setThemeMode(int themeMode)
+{
+    m_autoThemeCheck = false;
 
-//    if (m_themeMode == themeMode)
-//        return;
+    if (m_themeMode == themeMode)
+        return;
 
-//    m_themeMode = themeMode;
-//    emit themeModeChanged();
-//}
+    m_themeMode = themeMode;
+    emit themeModeChanged();
+}
 
 QPoint PlatformToolsQML::getFrameSize() const
 {
@@ -76,6 +76,32 @@ void PlatformToolsQML::setColorBorderWindow(QColor color)
         emit colorBorderWindowChanged();
 }
 
+QColor PlatformToolsQML::colorColorization() const
+{
+    return m_colorColorization;
+}
+
+void PlatformToolsQML::setColorColorization(QColor color)
+{
+    QColor oldColor = colorColorization();
+    m_settings.setValue("COLOR_COLORIZATION", color);
+    if (oldColor != color)
+        emit colorColorizationChanged();
+}
+
+QColor PlatformToolsQML::colorHoverCol() const
+{
+    return m_colorHoverCol;
+}
+
+void PlatformToolsQML::setColorHoverCol(QColor color)
+{
+    QColor oldColor = colorHoverCol();
+    m_settings.setValue("COLOR_COLORHOVER", color);
+    if (oldColor != color)
+        emit colorHoverColChanged();
+}
+
 int PlatformToolsQML::cornerRadiusTopLevel() const
 {
     const QString os = QSysInfo::productType();
@@ -92,22 +118,27 @@ int PlatformToolsQML::borderWidthWindow() const
     return m_borderWidthWindow;
 }
 
+double PlatformToolsQML::scaleFactor() const
+{
+    return m_scaleFactor;
+}
+
 void PlatformToolsQML::timerEvent(QTimerEvent *event)
 {
     Q_UNUSED(event);
     #ifdef Q_OS_WIN
-//        // themeMode
-//        int themeMode = m_sys_settings->value("AppsUseLightTheme", true).toInt();
-//        if (themeMode != m_themeMode)
-//        {
-//            m_themeMode = themeMode;
-//            emit themeModeChanged();
-//        }
+        // themeMode
+        int themeMode = m_sys_settings->value("AppsUseLightTheme", true).toInt();
+        if (themeMode != m_themeMode)
+        {
+            m_themeMode = themeMode;
+            emit themeModeChanged();
+        }
 
         // captionHeight
         if (true)
         {
-            int captionHeight = GetSystemMetrics(SM_CYCAPTION);
+            int captionHeight = GetSystemMetrics(SM_CYCAPTION) / m_scaleFactor;
             if (captionHeight != m_captionHeight)
             {
                 m_captionHeight = captionHeight;
@@ -163,6 +194,54 @@ void PlatformToolsQML::timerEvent(QTimerEvent *event)
             }
         }
 
+        // colorColorization
+        if (true)
+        {
+            QColor color;
+            QVariant variant = m_settings.value("COLOR_COLORIZATION");
+            if (variant.toInt())
+                color = variant.value<QColor>();
+            else
+            {
+//                if (m_dwm_settings->value("ColorizationColor").toBool())
+//                {
+//                    unsigned long colorizationColor = m_dwm_settings->value("ColorizationColor").toUInt();
+//                    color = QColor(GetRValue(colorizationColor), GetGValue(colorizationColor), GetBValue(colorizationColor));
+//                }
+//                else
+                    color = QColor(65, 165, 238);
+            }
+            if (m_colorColorization != color)
+            {
+                m_colorColorization = color;
+                emit colorColorizationChanged();
+            }
+        }
+
+        // colorHoverCol
+        if (true)
+        {
+            QColor color;
+            QVariant variant = m_settings.value("COLOR_COLORHOVER");
+            if (variant.toInt())
+                color = variant.value<QColor>();
+            else
+            {
+//                if (m_dwm_settings->value("ColorizationColor").toBool())
+//                {
+//                    unsigned long colorizationColor = m_dwm_settings->value("ColorizationColor").toUInt();
+//                    color = QColor(GetRValue(colorizationColor), GetGValue(colorizationColor), GetBValue(colorizationColor));
+//                }
+//                else
+                    color = QColor(0, 119, 255);
+            }
+            if (m_colorHoverCol != color)
+            {
+                m_colorHoverCol = color;
+                emit colorHoverColChanged();
+            }
+        }
+
         // borderWidthWindow
         if (true)
         {
@@ -172,6 +251,18 @@ void PlatformToolsQML::timerEvent(QTimerEvent *event)
                 m_borderWidthWindow = borderWidthWindow;
                 emit borderWidthWindowChanged();
             }
+        }
+
+        // scaleFactor
+        if (true)
+        {
+            double scaleFactor = QGuiApplication::primaryScreen()->devicePixelRatio();
+            if (scaleFactor != m_scaleFactor)
+            {
+                m_scaleFactor = scaleFactor;
+                emit scaleFactorChanged();
+            }
+
         }
 
     #endif

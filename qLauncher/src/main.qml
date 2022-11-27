@@ -1,4 +1,4 @@
-import QtQuick
+import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 import "qmls/"
@@ -20,10 +20,9 @@ MainWindow{
             id: login_body
             visible: false
         }
-
         LoadingBody{
             id: loading_body
-            visible: false
+            visible: true
         }
     }
 }

@@ -4,7 +4,6 @@ using namespace SETTINGS;
 
 int main(int argc, char *argv[])
 {
-    //qputenv("QT_QPA_PLATFORM", "windows:darkmode=2");
     // Prepre app
     SingleApplication app(argc, argv);
     QQmlApplicationEngine engine;

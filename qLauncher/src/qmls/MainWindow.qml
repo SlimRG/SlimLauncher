@@ -1,17 +1,13 @@
 import QtQuick
-import QtQuick 2.15
-import QtQuick.Controls.Material 2.3
-
+import QtQuick.Controls.Material
 import Custom
 
 Window {
+    // Main properties
     id: mainWindow
     visible: true
     flags: Qt.Window | Qt.FramelessWindowHint
     color: "transparent"
-
-    //property int themeMode: PlatformToolsQML.themeMode
-    property int titleHeight: PlatformToolsQML.captionHeight
 
     width: PlatformToolsQML.getFrameSize.x
     height: PlatformToolsQML.getFrameSize.y
@@ -19,14 +15,22 @@ Window {
     minimumWidth: PlatformToolsQML.getFrameMinSize.x
     minimumHeight: PlatformToolsQML.getFrameMinSize.y
 
+    // Library properties
+    property int themeMode: PlatformToolsQML.themeMode
+    property int titleHeight: PlatformToolsQML.captionHeight
+    property double scaleFactor: PlatformToolsQML.scaleFactor
+
     property color colorActiveWindow: PlatformToolsQML.colorActiveWindow
     property color colorBorderWindow: PlatformToolsQML.colorBorderWindow
+    property color colorColorization: PlatformToolsQML.colorColorization
+    property color colorHoverCol: PlatformToolsQML.colorHoverCol
 
     property int cornerRadiusTopLevel: PlatformToolsQML.cornerRadiusTopLevel
     property int borderWidthWindow: PlatformToolsQML.borderWidthWindow
 
     property bool isFullScreen: (mainWindow.visibility === Window.FullScreen)
 
+    // Resize properties
     property point startMousePos
     property point startWindowPos
     property size startWindowSize

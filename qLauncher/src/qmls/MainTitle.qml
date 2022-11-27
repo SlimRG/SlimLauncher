@@ -1,20 +1,20 @@
 import QtQuick
-import QtQuick 2.0
-
 import Qt5Compat.GraphicalEffects
-
 import Custom
 
 Item{
+    // Main properties
     id:mainTitle
+    height: mainWindow.titleHeight * 3
+
+    // Anchors properties
     anchors{
         left: parent.left
         right: parent.right
         top: parent.top
     }
 
-    height: mainWindow.titleHeight * 3
-
+    // Resize properties
     MouseArea {
         id: moveArea
         visible: (!mainWindow.isFullScreen)
@@ -34,6 +34,7 @@ Item{
         }
     }
 
+    // Effects properties
     // [TODO] Переписать архаизм (Qt 6.5+)
     DropShadow {
         id: titleShadow
@@ -41,10 +42,10 @@ Item{
         anchors.fill: mainTitle
         horizontalOffset: 1
         verticalOffset: 1
-        radius: moveArea.pressed ? 8 : 5
+        radius: moveArea.pressed ? 2 : 1
         transparentBorder: false
         source: mainTitle
-        color: "#80000000"
+        color: "gray"
         cached: false
         Behavior on radius { PropertyAnimation { duration: 100 } }
     }
