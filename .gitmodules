@@ -2,3 +2,7 @@
 	path = qLauncher/src/libs/singleapplication
 	url = https://github.com/itay-grudev/SingleApplication.git
 	branch = master
+[submodule "qLauncher/src/libs/framelesshelper"]
+	path = qLauncher/src/libs/framelesshelper
+	url = https://github.com/wangwenx190/framelesshelper.git
+	branch = main
