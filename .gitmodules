@@ -1,8 +1,8 @@
-[submodule "qLauncher/src/libs/singleapplication"]
-	path = qLauncher/src/libs/singleapplication
+[submodule "SlimLauncher/src/libs/singleapplication"]
+	path = SlimLauncher/src/libs/singleapplication
 	url = https://github.com/itay-grudev/SingleApplication.git
 	branch = master
-[submodule "qLauncher/src/libs/framelesshelper"]
-	path = qLauncher/src/libs/framelesshelper
+[submodule "SlimLauncher/src/libs/framelesshelper"]
+	path = SlimLauncher/src/libs/framelesshelper
 	url = https://github.com/wangwenx190/framelesshelper.git
 	branch = main

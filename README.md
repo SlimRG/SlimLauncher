@@ -1,2 +1,2 @@
-# qLauncher
+# SlimLauncher
 Qt Minecraft Launcher
